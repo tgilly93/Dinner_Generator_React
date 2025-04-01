@@ -3,6 +3,7 @@ name: Update README
 on:
   schedule:
     - cron: '0 0 * * *'  # Runs daily
+    workflow_dispatch:
   push:
     branches:
       - main
