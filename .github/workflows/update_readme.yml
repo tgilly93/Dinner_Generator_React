@@ -1,0 +1,32 @@
+name: Update README
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Fetch Open Issues
+        run: |
+          echo "## 🚀 Open Issues" > README.md
+          echo "" >> README.md
+          curl -s "https://api.github.com/repos/tgilly93/Dinner_Generator_React/issues?state=open" |
+          jq -r '.[] | "- [#\(.number)](\(.html_url)) \(.title)"' >> README.md
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add README.md
+          git commit -m "🔄 Auto-update README with open issues" || exit 0
+          git push
