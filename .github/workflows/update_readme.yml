@@ -4,7 +4,8 @@ on:
   schedule:
     - cron: '0 0 * * *'  # Runs daily
     issues:
-      types: [opened, edited, closed]
+      types: [opened, edited, closed, reopened, assigned, unassigned, labeled, unlabeled,
+        synchronize, milestoned, demilestoned, locked, unlocked] 
   push:
     branches:
       - main
