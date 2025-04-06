@@ -23,10 +23,10 @@ jobs:
 
       - name: Fetch Open Issues
         run: |
-          echo "## 🚀 Open Issues" > README.md
-          echo "" >> README.md
-          curl -s "https://api.github.com/repos/tgilly93/Dinner_Generator_React/issues?state=open" |
-          jq -r '.[] | "- [#\(.number)](\(.html_url)) \(.title)"' >> README.md
+          issues=$(curl -s "https://api.github.com/repos/tgilly93/Dinner_Generator_React/issues?state=open" | \
+          jq -r '.[] | "- [#\(.number)](\(.html_url)) \(.title)"')
+          sed -i '/<!-- AUTO-ISSUES-START -->/,/<!-- AUTO-ISSUES-END -->/c\
+          <!-- AUTO-ISSUES-START -->\n'"$issues"'\n<!-- AUTO-ISSUES-END -->' README.md
 
       - name: Commit and Push
         run: |
