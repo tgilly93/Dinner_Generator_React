@@ -1,4 +1,4 @@
-![Project Screenshot](src/assets/Dinner_Generator_React_thumb.jpg)
+![Project Screenshot](src/assets/Dinner_Generator_React_thumb.png)
 
 ## 🚀 Open Issues
 
