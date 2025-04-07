@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
-import HomePage from './components/HomePage.jsx';
-
+import HomePage from './pages/HomePage.jsx';
+import MealResult from './pages/MealResult.jsx';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        {/* Add more routes here */}
+        <Route path="/MealResult" element={<MealResult />} />
       </Routes>
     </Router>
   );
