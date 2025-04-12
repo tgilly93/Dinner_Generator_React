@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage.jsx';
 import MealResult from './pages/MealResult.jsx';
 import NavBar from './components/NavBar.jsx';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
