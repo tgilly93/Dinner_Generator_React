@@ -3,10 +3,14 @@ import { Container, Row, Col } from "react-bootstrap";
 
 function HomePage() {
   return (
-    <div className="container">
-      <h1 className="text-center">Welcome to the Home Page</h1>
-      <p className="text-center">This is a simple React app with Bootstrap styling.</p>
-    </div>
+    <Container fluid className="vh-100 d-flex flex-column justify-content-center align-items-center bg-light">
+      <Row>
+        <Col className="text-center">
+          <h1 className="display-4">Welcome to the HomePage!</h1>
+          <p className="lead">This is a homepage</p>
+          </Col>
+      </Row>
+    </Container>
   );
 }
 export default HomePage;
