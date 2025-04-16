@@ -38,7 +38,7 @@ jobs:
         run: npm install @octokit/core
 
       - name: Run Checklist Script
-        run: node .github/scripts/update-parent-checklists.js
+        run: node .github/scripts/update-parent-checklist.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
