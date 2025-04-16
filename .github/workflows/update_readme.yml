@@ -35,7 +35,7 @@ jobs:
           ' README.md > tmp && mv tmp README.md
 
       - name: Install Octokit
-        run: npm install @octokit/core
+        run: npm install @octokit/core --no-save
 
       - name: Run Checklist Script
         run: node .github/scripts/update-parent-checklist.cjs
@@ -49,5 +49,4 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add README.md
           git commit -m "🔄 Auto-update README with open issues" || echo "No changes to commit"
-          git pull --rebase
           git push
