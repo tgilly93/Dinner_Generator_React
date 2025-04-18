@@ -8,7 +8,7 @@ on:
     branches:
       - main
   issues:
-    types: 
+    types:
       - opened
       - edited
       - closed
@@ -33,7 +33,7 @@ jobs:
       - name: Install jq
         run: sudo apt-get install -y jq
 
-      - name: Fetch Open Issues
+      - name: Fetch Open Issues and Update README
         run: |
           issues=$(curl -s "https://api.github.com/repos/${{ github.repository }}/issues?state=open" | \
           jq -r '.[] | select(.labels | map(.name) | index("frontend")) | "- [#\(.number)](\(.html_url)) \(.title)"')
@@ -48,7 +48,7 @@ jobs:
         run: npm install @octokit/core --no-save
 
       - name: Run Checklist Script
-        run: node .github/scripts/update-parent-checklist.cjs
+        run: node .github/scripts/update-parent-checklists.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
@@ -57,7 +57,9 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git pull --rebase origin main
+
           git add README.md
           git commit -m "🔄 Auto-update README with open issues [skip ci]" || echo "No changes to commit"
+          
+          git pull --rebase origin main
           git push
