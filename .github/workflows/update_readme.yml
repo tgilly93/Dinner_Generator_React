@@ -8,9 +8,19 @@ on:
     branches:
       - main
   issues:
-    types: [opened, edited, closed, reopened, assigned, unassigned, labeled, unlabeled, milestoned, demilestoned, locked, unlocked] 
-  
-  
+    types: 
+      - opened
+      - edited
+      - closed
+      - reopened
+      - assigned
+      - unassigned
+      - labeled
+      - unlabeled
+      - milestoned
+      - demilestoned
+      - locked
+      - unlocked
 
 jobs:
   update-readme:
@@ -19,16 +29,16 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
-        
+
       - name: Install jq
         run: sudo apt-get install -y jq
 
       - name: Fetch Open Issues
         run: |
           issues=$(curl -s "https://api.github.com/repos/${{ github.repository }}/issues?state=open" | \
-          jq -r '.[] | "- [#\(.number)](\(.html_url)) \(.title)"')
+          jq -r '.[] | select(.labels | map(.name) | index("frontend")) | "- [#\(.number)](\(.html_url)) \(.title)"')
 
-           awk -v new="$issues" '
+          awk -v new="$issues" '
             /<!-- ISSUES-START -->/ { print; print new; skip=1; next }
             /<!-- ISSUES-END -->/ { skip=0 }
             skip == 0 { print }
@@ -43,10 +53,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
 
-      - name: Commit and Push
+      - name: Commit and Push Changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git pull --rebase origin main
           git add README.md
-          git commit -m "🔄 Auto-update README with open issues" || echo "No changes to commit"
+          git commit -m "🔄 Auto-update README with open issues [skip ci]" || echo "No changes to commit"
           git push
