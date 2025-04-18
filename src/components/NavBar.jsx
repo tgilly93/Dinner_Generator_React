@@ -1,15 +1,16 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Container, Form, FormControl, Button } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
     <Navbar expand="lg" variant="dark" bg="dark" className="rounded" aria-label="Ninth navbar example">
       <Container fluid="xl">
-        <Navbar.Brand href="#">Container XL</Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/">Container XL</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarsExample07XL" />
         <Navbar.Collapse id="navbarsExample07XL">
           <Nav className="me-auto mb-2 mb-lg-0">
-            <Nav.Link href="#" active>Home</Nav.Link>
+            <Nav.Link as={NavLink} to="/categories">Categories</Nav.Link>
             <Nav.Link href="#">Link</Nav.Link>
             <Nav.Link href="#" disabled>Disabled</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
