@@ -4,6 +4,7 @@
 
 
 <!-- ISSUES-START -->
+- [#21](https://github.com/tgilly93/Dinner_Generator_React/issues/21) "FIlter by area" endpoint
 - [#20](https://github.com/tgilly93/Dinner_Generator_React/issues/20) "Filter by category" endpoint
 - [#19](https://github.com/tgilly93/Dinner_Generator_React/issues/19) "Filter by main ingredient"endpoint
 - [#18](https://github.com/tgilly93/Dinner_Generator_React/issues/18) "List Categories, Areas, Ingredients" endpoint
