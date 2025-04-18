@@ -36,7 +36,7 @@ jobs:
       - name: Fetch Open Issues and Update README
         run: |
           issues=$(curl -s "https://api.github.com/repos/${{ github.repository }}/issues?state=open" | \
-          jq -r '.[] | "- [#\(.number)](\(.html_url)) \(.title)"')
+          jq -r '.[] | select(.labels | map(.name) | index("Frontend")) | "- [#\(.number)](\(.html_url)) \(.title)"')
 
           awk -v new="$issues" '
             /<!-- ISSUES-START -->/ { print; print new; skip=1; next }
