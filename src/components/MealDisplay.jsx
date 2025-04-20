@@ -1,80 +1,61 @@
-import { useState, useEffect } from "react";
 import React from "react";
-import mealService from "../assets/services/mealService";
-import { Container, Row, Col, Card, Image, Spinner, Alert } from "react-bootstrap";
+import { Card, ListGroup, Ratio } from "react-bootstrap";
 
-function MealDisplay() {
-  const [meal, setMeal] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+function MealDisplay({ meal }) {
+  if (!meal) return null;
 
-  useEffect(() => {
-    async function fetchMeal() {
-      try {
-        const randomMeal = await mealService.getRandomMeal();
-        setMeal(randomMeal);
-      } catch (error) {
-        console.error("Error fetching random meal:", error);
-        setError("Sorry, we couldn't load a random meal. Please try again.");
-      } finally {
-        setLoading(false);
-      }
+  const ingredients =  [];
+  for (let i = 1; i <= 20; i++) {
+    const ingredient = meal[`strIngredient${i}`];
+    const measure = meal[`strMeasure${i}`];
+    if (ingredient && ingredient.trim()) {
+      ingredients.push(`${ingredient} - ${measure}`);
     }
-    fetchMeal();
-  }, []);
+  }
+
+  const videoId = meal.strYoutube?.split("v=")[1];
 
   return (
-    <Container fluid>
-      <Row className="justify-content-center">
-        <Col xs={12} sm={10} md={8} lg={6}>
-          <Card className="shadow-sm mt-4">
-            <Card.Body>
-              <Card.Title className="text-center">🍽️ Meal Display</Card.Title>
-              {loading && (
-                <div className="text-center">
-                  <Spinner animation="border" role="status" />
-                </div>
-              )}
-              
-              {error && <Alert variant="danger">{error}</Alert>}
-              
-              {meal && (
-                <>
-                  <Card.Text className="text-center fw-bold">
-                    {meal.strMeal}
-                  </Card.Text>
-                  <Image
-                    src={meal.strMealThumb}
-                    alt={meal.strMeal}
-                    fluid
-                    rounded
-                    className="mb-3"
-                  />
-                  <Card.Text>
-                    <strong>Category:</strong> {meal.strCategory} <br />
-                    <strong>Area:</strong> {meal.strArea} <br />
-                    <strong>Instructions:</strong>
-                    <br />
-                    {meal.strInstructions}
-                  </Card.Text>
-                  {meal.strYoutube && (
-                    <Card.Text className="text-center">
-                      <a
-                        href={meal.strYoutube}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        🎥 Watch on YouTube
-                      </a>
-                    </Card.Text>
-                  )}
-                </>
-              )}
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+    <Card className="mb-4 shadow-sm">
+      <Card.Img variant="top" src={meal.strMealThumb} />
+      <Card.Body>
+        <Card.Title>{meal.strMeal}</Card.Title>
+        <Card.Text>
+          <strong>Category:</strong> {meal.strCategory} <br />
+          <strong>Area:</strong> {meal.strArea} <br />
+        </Card.Text>
+
+        <h5>Instructions</h5>
+        <Card.Text style={{ whiteSpace: "pre-line" }}>
+          {meal.strInstructions}
+        </Card.Text>
+
+        {ingredients.length > 0 && (
+          <>
+            <h5>Ingredients</h5>
+            <ListGroup className="mb-3">
+              {ingredients.map((ingredient, index) => (
+                <ListGroup.Item key={index}>{ingredient}</ListGroup.Item>
+              ))}
+            </ListGroup>
+          </>
+        )}
+
+        {videoId && (
+          <>
+            <h5>Video Tutorial</h5>
+            <Ratio aspectRatio="16x9">
+              <iframe
+                title="YouTube video"
+                src={`https://www.youtube.com/embed/${videoId}`}
+                allowFullScreen
+              />
+            </Ratio>
+          </>
+        )}
+        </Card.Body>
+        </Card>
   );
 }
+
 export default MealDisplay;

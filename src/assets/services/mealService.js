@@ -20,6 +20,26 @@ const mealService = {
       throw error;
     }
   },
+
+  async searchMealByName(query) {
+    try {
+      const response = await apiClient.get(`search.php?s=${query}`);
+      return response.data.meals;
+    } catch (error) {
+      console.error("Error searching meal by name:", error);
+      throw error;
+    }
+  },
+
+  async getMealById(id) {
+    try {
+      const response = await apiClient.get(`lookup.php?i=${id}`);
+      return response.data.meals[0];
+    } catch (error) {
+      console.error("Error fetching meal by ID:", error);
+      throw error;
+    }
+  }
 };
 
 export default mealService;
