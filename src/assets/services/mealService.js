@@ -39,6 +39,16 @@ const mealService = {
       console.error("Error fetching meal by ID:", error);
       throw error;
     }
+  },
+
+  async getMealsByFirstLetter(letter) {
+    try {
+      const response = await apiClient.get(`search.php?f=${letter}`);
+      return response.data.meals;
+    } catch (error) {
+      console.error("Error fetching meals by first letter:", error);
+      throw error;
+    }
   }
 };
 
