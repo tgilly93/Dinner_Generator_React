@@ -49,6 +49,26 @@ const mealService = {
       console.error("Error fetching meals by first letter:", error);
       throw error;
     }
+  },
+
+  async getAllMealAreas() {
+    try {
+      const response = await apiClient.get("list.php?a=list");
+      return response.data.meals;
+    } catch (error) {
+      console.error("Error fetching meal areas:", error);
+      throw error;
+    }
+  },
+
+  async getAllIngredients() {
+    try {
+      const response = await apiClient.get("list.php?i=list");
+      return response.data.meals;
+    } catch (error) {
+      console.error("Error fetching ingredients:", error);
+      throw error;
+    }
   }
 };
 
