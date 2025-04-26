@@ -1,0 +1,31 @@
+const areaFlags = {
+    "American": "https://flagcdn.com/us.svg",
+    "British": "https://flagcdn.com/gb.svg",
+    "Canadian": "https://flagcdn.com/ca.svg",
+    "Chinese": "https://flagcdn.com/cn.svg",
+    "Croatian": "https://flagcdn.com/hr.svg",
+    "Dutch": "https://flagcdn.com/nl.svg",
+    "Egyptian": "https://flagcdn.com/eg.svg",
+    "Filipino": "https://flagcdn.com/ph.svg",
+    "French": "https://flagcdn.com/fr.svg",
+    "Greek": "https://flagcdn.com/gr.svg",
+    "Indian": "https://flagcdn.com/in.svg",
+    "Irish": "https://flagcdn.com/ie.svg",
+    "Italian": "https://flagcdn.com/it.svg",
+    "Jamaican": "https://flagcdn.com/jm.svg",
+    "Japanese": "https://flagcdn.com/jp.svg",
+    "Kenyan": "https://flagcdn.com/ke.svg",
+    "Malaysian": "https://flagcdn.com/my.svg",
+    "Mexican": "https://flagcdn.com/mx.svg",
+    "Moroccan": "https://flagcdn.com/ma.svg",
+    "Polish": "https://flagcdn.com/pl.svg",
+    "Portuguese": "https://flagcdn.com/pt.svg",
+    "Russian": "https://flagcdn.com/ru.svg",
+    "Spanish": "https://flagcdn.com/es.svg",
+    "Thai": "https://flagcdn.com/th.svg",
+    "Tunisian": "https://flagcdn.com/tn.svg",
+    "Turkish": "https://flagcdn.com/tr.svg",
+    "Vietnamese": "https://flagcdn.com/vn.svg"
+  };
+  
+  export default areaFlags;

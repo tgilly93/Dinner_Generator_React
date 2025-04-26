@@ -22,11 +22,11 @@ function NavBar() {
         <Navbar.Collapse id="navbarsExample07XL">
           <Nav className="me-auto mb-2 mb-lg-0">
             <Nav.Link as={NavLink} to="/categories">Categories</Nav.Link>
-            <Nav.Link as={NavLink} to={"/search-by-letter"}>Browse by Letter</Nav.Link>
+            <Nav.Link as={NavLink} to="/search-by-letter">Browse by Letter</Nav.Link>
             <Nav.Link href="#" disabled>Disabled</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#">Another action</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="/areas">Areas</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="/ingredients">Ingredients</NavDropdown.Item>
               <NavDropdown.Item href="#">Something else here</NavDropdown.Item>
             </NavDropdown>
           </Nav>

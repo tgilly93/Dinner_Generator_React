@@ -7,6 +7,8 @@ import Footer from "./components/Footer.jsx";
 import CategoryPage from "./pages/CategoryPage.jsx";
 import SearchResults from "./pages/SearchResults.jsx";
 import SearchByLetter from "./pages/SearchByLetter.jsx";
+import AreaPage from "./pages/AreaPage.jsx";
+import IngredientPage from "./pages/IngredientPage.jsx";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/categories" element={<CategoryPage />} /> 
         <Route path="/search" element={<SearchResults />} />
         <Route path="/search-by-letter" element={<SearchByLetter />} />
+        <Route path="/areas" element={<AreaPage />} />
+        <Route path="/ingredients" element={<IngredientPage />} />
         </Routes>
       <Footer />
     </div>
