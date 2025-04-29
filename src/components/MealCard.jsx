@@ -15,22 +15,35 @@ function MealCard({ meal }) {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, type: "spring", stiffness: 100 }}
-      whileHover={{ scale: 1.03 }}>
+      whileHover={{ scale: 1.03 }}
+    >
       <Card className="h-100 shadow-sm">
-      <Card.Img variant="top" src={meal.strMealThumb} alt={meal.strMeal} style={{ maxHeight: "200px", objectFit: "cover" }} />
-      <Card.Body className="d-flex flex-column">
-        <Card.Title>{meal.strMeal}</Card.Title>
-        <Card.Text>
-          <strong>Category:</strong> {meal.strCategory} <br />
-          <strong>Area:</strong> {meal.strArea}
-        </Card.Text>
-        <Button variant="primary" onClick={handleClick} className="mt-auto">
-          View Details
-        </Button>
-      </Card.Body>
-    </Card>
+        <Card.Img
+          variant="top"
+          src={meal.strMealThumb}
+          alt={meal.strMeal}
+          style={{ maxHeight: "200px", objectFit: "cover" }}
+        />
+        <Card.Body className="d-flex flex-column">
+          <Card.Title>{meal.strMeal}</Card.Title>
+          <Card.Text>
+            {meal.strCategory && (
+              <>
+                <strong>Category:</strong> {meal.strCategory} <br />
+              </>
+            )}
+            {meal.strArea && (
+              <>
+                <strong>Area:</strong> {meal.strArea}
+              </>
+            )}
+          </Card.Text>
+          <Button variant="primary" onClick={handleClick} className="mt-auto">
+            View Details
+          </Button>
+        </Card.Body>
+      </Card>
     </motion.div>
-    
   );
 }
 

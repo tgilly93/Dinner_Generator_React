@@ -4,7 +4,7 @@ import { Card, ListGroup, Ratio } from "react-bootstrap";
 function MealDisplay({ meal }) {
   if (!meal) return null;
 
-  const ingredients =  [];
+  const ingredients = [];
   for (let i = 1; i <= 20; i++) {
     const ingredient = meal[`strIngredient${i}`];
     const measure = meal[`strMeasure${i}`];
@@ -53,8 +53,8 @@ function MealDisplay({ meal }) {
             </Ratio>
           </>
         )}
-        </Card.Body>
-        </Card>
+      </Card.Body>
+    </Card>
   );
 }
 
