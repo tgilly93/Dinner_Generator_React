@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Row, Col, Spinner, Alert } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function CategoryDisplay({ categories, loading, error }) {
   if (loading) {
@@ -22,19 +23,24 @@ function CategoryDisplay({ categories, loading, error }) {
     <Row xs={1} sm={2} md={3} lg={4} className="g-4 mt-4">
       {categories.map((category) => (
         <Col key={category.idCategory}>
-          <Card className="h-100 shadow-sm">
-            <Card.Img
-              variant="top"
-              src={category.strCategoryThumb}
-              alt={category.strCategory}
-            />
-            <Card.Body>
-              <Card.Title>{category.strCategory}</Card.Title>
-              <Card.Text>
-                {category.strCategoryDescription.slice(0, 100)}...
-              </Card.Text>
-            </Card.Body>
-          </Card>
+          <Link
+            to={`/category/${category.strCategory}`}
+            className="text-decoration-none text-dark"
+          >
+            <Card className="h-100 shadow-sm">
+              <Card.Img
+                variant="top"
+                src={category.strCategoryThumb}
+                alt={category.strCategory}
+              />
+              <Card.Body>
+                <Card.Title>{category.strCategory}</Card.Title>
+                <Card.Text>
+                  {category.strCategoryDescription.slice(0, 100)}...
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Link>
         </Col>
       ))}
     </Row>

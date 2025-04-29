@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Navbar, Nav, NavDropdown, Container, Form, FormControl, Button } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Container,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
 import { useNavigate, NavLink } from "react-router-dom";
 
 function NavBar() {
@@ -15,18 +23,36 @@ function NavBar() {
   };
 
   return (
-    <Navbar expand="lg" variant="dark" bg="dark" className="rounded" aria-label="Ninth navbar example">
+    <Navbar
+      expand="lg"
+      variant="dark"
+      bg="dark"
+      className="rounded"
+      aria-label="Ninth navbar example"
+    >
       <Container fluid="xl">
-        <Navbar.Brand as={NavLink} to="/">Container XL</Navbar.Brand>
+        <Navbar.Brand as={NavLink} to="/">
+          Container XL
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarsExample07XL" />
         <Navbar.Collapse id="navbarsExample07XL">
           <Nav className="me-auto mb-2 mb-lg-0">
-            <Nav.Link as={NavLink} to="/categories">Categories</Nav.Link>
-            <Nav.Link as={NavLink} to="/search-by-letter">Browse by Letter</Nav.Link>
-            <Nav.Link href="#" disabled>Disabled</Nav.Link>
+            <Nav.Link as={NavLink} to="/categories">
+              Categories
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/search-by-letter">
+              Browse by Letter
+            </Nav.Link>
+            <Nav.Link href="#" disabled>
+              Disabled
+            </Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item as={NavLink} to="/areas">Areas</NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/ingredients">Ingredients</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="/areas">
+                Areas
+              </NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="/ingredients">
+                Ingredients
+              </NavDropdown.Item>
               <NavDropdown.Item href="#">Something else here</NavDropdown.Item>
             </NavDropdown>
           </Nav>
@@ -39,7 +65,9 @@ function NavBar() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <Button variant="outline-light" type="submit">Search</Button>
+            <Button variant="outline-light" type="submit">
+              Search
+            </Button>
           </Form>
         </Navbar.Collapse>
       </Container>
@@ -47,4 +75,3 @@ function NavBar() {
   );
 }
 export default NavBar;
-    

@@ -9,6 +9,7 @@ import SearchResults from "./pages/SearchResults.jsx";
 import SearchByLetter from "./pages/SearchByLetter.jsx";
 import AreaPage from "./pages/AreaPage.jsx";
 import IngredientPage from "./pages/IngredientPage.jsx";
+import MealsByCategory from "./pages/MealsByCategory.jsx";
 
 function App() {
   return (
@@ -18,16 +19,15 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/meal" element={<MealResult />} />
         <Route path="/meal/:mealId" element={<MealResult />} />
-        <Route path="/categories" element={<CategoryPage />} /> 
+        <Route path="/categories" element={<CategoryPage />} />
+        <Route path="/category/:categoryName" element={<MealsByCategory />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path="/search-by-letter" element={<SearchByLetter />} />
         <Route path="/areas" element={<AreaPage />} />
         <Route path="/ingredients" element={<IngredientPage />} />
-        </Routes>
+      </Routes>
       <Footer />
     </div>
-
-        
   );
 }
 

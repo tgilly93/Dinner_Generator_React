@@ -21,6 +21,16 @@ const mealService = {
     }
   },
 
+  async getMealsByCategory(categoryName) {
+    try {
+      const response = await apiClient.get(`filter.php?c=${categoryName}`);
+      return response.data.meals;
+    } catch (error) {
+      console.error("Error fetching meals of this category:", error);
+      throw error;
+    }
+  },
+
   async searchMealByName(query) {
     try {
       const response = await apiClient.get(`search.php?s=${query}`);
@@ -69,7 +79,7 @@ const mealService = {
       console.error("Error fetching ingredients:", error);
       throw error;
     }
-  }
+  },
 };
 
 export default mealService;
