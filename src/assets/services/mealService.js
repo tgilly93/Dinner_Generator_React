@@ -80,6 +80,16 @@ const mealService = {
       throw error;
     }
   },
+
+  async getMealsByIngredient(ingredientName) {
+    try {
+      const response = await apiClient.get(`filter.php?i=${ingredientName}`);
+      return response.data.meals;
+    } catch (error) {
+      console.error("Error fetching meals by ingredient:", error);
+      throw error;
+    }
+  },
 };
 
 export default mealService;

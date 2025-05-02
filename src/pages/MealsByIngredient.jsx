@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import mealService from "../assets/services/mealService";
 import MealCard from "../components/MealCard";
 
-function MealsByCategory() {
-  const { categoryName } = useParams();
+function MealsByIngredient() {
+  const { ingredientName } = useParams();
   const [meals, setMeals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ function MealsByCategory() {
   useEffect(() => {
     async function fetchMeals() {
       try {
-        const data = await mealService.getMealsByCategory(categoryName);
+        const data = await mealService.getMealsByIngredient(ingredientName);
         setMeals(data);
       } catch (error) {
         setError(error);
@@ -22,7 +22,7 @@ function MealsByCategory() {
       }
     }
     fetchMeals();
-  }, [categoryName]);
+  }, [ingredientName]);
 
   if (loading) {
     return (
@@ -35,14 +35,14 @@ function MealsByCategory() {
   if (error) {
     return (
       <Alert variant="danger" className="text-center">
-        Failed to load categories: {error.message}
+        Failed to load ingredients: {error.message}
       </Alert>
     );
   }
 
   return (
     <Container className="py-5 bg-light">
-      <h2 className="text-center mb-4">{categoryName} Meals</h2>
+      <h2 className="text-center mb-4">{ingredientName} Meals</h2>
       <Row xs={1} sm={2} md={3} lg={4} className="g-4">
         {meals.map((meal) => (
           <Col key={meal.idMeal}>
@@ -54,4 +54,4 @@ function MealsByCategory() {
   );
 }
 
-export default MealsByCategory;
+export default MealsByIngredient;
