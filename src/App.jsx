@@ -10,6 +10,7 @@ import SearchByLetter from "./pages/SearchByLetter.jsx";
 import AreaPage from "./pages/AreaPage.jsx";
 import IngredientPage from "./pages/IngredientPage.jsx";
 import MealsByCategory from "./pages/MealsByCategory.jsx";
+import MealsByIngredient from "./pages/MealsByIngredient.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/search-by-letter" element={<SearchByLetter />} />
         <Route path="/areas" element={<AreaPage />} />
         <Route path="/ingredients" element={<IngredientPage />} />
+        <Route path="/ingredient/:ingredientName" element={<MealsByIngredient />} />
       </Routes>
       <Footer />
     </div>

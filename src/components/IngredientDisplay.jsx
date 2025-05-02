@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Row, Col, Spinner, Alert } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function IngredientDisplay({ ingredients, loading, error }) {
   if (loading) {
@@ -22,24 +23,29 @@ function IngredientDisplay({ ingredients, loading, error }) {
     <Row xs={1} sm={2} md={3} lg={4} className="g-4 mt-4">
       {ingredients.map((ingredient, index) => (
         <Col key={index}>
-          <Card className="h-100 shadow-sm text-center">
-            <Card.Img
-              variant="top"
-              src={`https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png`}
-              alt={`Image of ${ingredient.strIngredient}`}
-              style={{ height: "200px", objectFit: "cover" }}
-            />
-            <Card.Body>
-              <Card.Title>{ingredient.strIngredient}</Card.Title>
-              <Card.Text>
-                {ingredient.strDescription
-                  ? ingredient.strDescription.length > 100
-                    ? `${ingredient.strDescription.slice(0, 100)}...`
-                    : ingredient.strDescription
-                  : "No description available."}
-              </Card.Text>
-            </Card.Body>
-          </Card>
+          <Link
+            to={`/ingredient/${ingredient.strIngredient}`}
+            className="text-decoration-none text-dark"
+          >
+            <Card className="h-100 shadow-sm text-center">
+              <Card.Img
+                variant="top"
+                src={`https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png`}
+                alt={`Image of ${ingredient.strIngredient}`}
+                style={{ height: "200px", objectFit: "cover" }}
+              />
+              <Card.Body>
+                <Card.Title>{ingredient.strIngredient}</Card.Title>
+                <Card.Text>
+                  {ingredient.strDescription
+                    ? ingredient.strDescription.length > 100
+                      ? `${ingredient.strDescription.slice(0, 100)}...`
+                      : ingredient.strDescription
+                    : "No description available."}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Link>
         </Col>
       ))}
     </Row>
