@@ -4,6 +4,7 @@
 
 
 <!-- ISSUES-START -->
+- [#29](https://github.com/tgilly93/Dinner_Generator_React/issues/29) "Weekly Meal Plan" endpoint&view
 - [#28](https://github.com/tgilly93/Dinner_Generator_React/issues/28) "Daily Meal Plan" endpoint&view
 - [#22](https://github.com/tgilly93/Dinner_Generator_React/issues/22) "Get multiple random meals" endpoint
 - [#21](https://github.com/tgilly93/Dinner_Generator_React/issues/21) "FIlter by area" endpoint
