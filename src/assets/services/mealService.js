@@ -71,6 +71,16 @@ const mealService = {
     }
   },
 
+  async getMealsByArea(areaName) {
+    try {
+      const response = await apiClient.get(`filter.php?a=${areaName}`);
+      return response.data.meals;
+    } catch (error) {
+      console.error("Error fetching meals by area:", error);
+      throw error;
+    }
+  },
+
   async getAllIngredients() {
     try {
       const response = await apiClient.get("list.php?i=list");

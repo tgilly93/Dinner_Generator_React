@@ -11,6 +11,7 @@ import AreaPage from "./pages/AreaPage.jsx";
 import IngredientPage from "./pages/IngredientPage.jsx";
 import MealsByCategory from "./pages/MealsByCategory.jsx";
 import MealsByIngredient from "./pages/MealsByIngredient.jsx";
+import MealsByArea from "./pages/MealsByArea.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/search" element={<SearchResults />} />
         <Route path="/search-by-letter" element={<SearchByLetter />} />
         <Route path="/areas" element={<AreaPage />} />
+        <Route path="/area/:areaName" element={<MealsByArea />} />
         <Route path="/ingredients" element={<IngredientPage />} />
         <Route path="/ingredient/:ingredientName" element={<MealsByIngredient />} />
       </Routes>
