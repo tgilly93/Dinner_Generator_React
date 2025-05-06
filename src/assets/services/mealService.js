@@ -100,6 +100,56 @@ const mealService = {
       throw error;
     }
   },
+
+  async getRandomMealPlan() {
+    try {
+      const selectedMeals = new Map();
+
+      const [breakfastMeals, dessertMeals] = await Promise.all([
+        this.getMealsByCategory("Breakfast"),
+        this.getMealsByCategory("Dessert"),
+      ]);
+
+      const randomBreakfast = breakfastMeals[Math.floor(Math.random() * breakfastMeals.length)];
+      const randomDessert = dessertMeals[Math.floor(Math.random() * dessertMeals.length)];
+
+      selectedMeals.set(randomBreakfast.idMeal, randomBreakfast);
+      selectedMeals.set(randomDessert.idMeal, randomDessert);
+
+      const randomMeals = await Promise.all([
+        this.getRandomMeal(),
+        this.getRandomMeal(),
+        this.getRandomMeal(),
+        this.getRandomMeal()
+      ]);
+
+      for (const meal of randomMeals) {
+        if (selectedMeals.size >= 4) break;
+        if (!selectedMeals.has(meal.idMeal)) {
+          selectedMeals.set(meal.idMeal, meal);
+        }
+      }
+
+      let attempts = 0;
+      const maxAttempts = 5;
+      while (selectedMeals.size < 4 && attempts < maxAttempts) {
+        const meal = await this.getRandomMeal();
+        if (!selectedMeals.has(meal.idMeal)) {
+          selectedMeals.set(meal.idMeal, meal);
+        }
+        attempts++;
+      }
+
+      if (selectedMeals.size < 4) {
+        throw new Error("Unable to collect 4 unique meals after multiple attempts.");
+      }
+
+      return Array.from(selectedMeals.values());
+    } catch (error) {
+      console.error("Error fetching random meal plan:", error);
+      throw error;
+    }
+  }
 };
 
 export default mealService;
