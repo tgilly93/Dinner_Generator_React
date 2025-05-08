@@ -5,6 +5,5 @@
 
 <!-- ISSUES-START -->
 - [#34](https://github.com/tgilly93/Dinner_Generator_React/issues/34) Fix Random Meal UX
-- [#33](https://github.com/tgilly93/Dinner_Generator_React/issues/33) FIx NavBar
 - [#32](https://github.com/tgilly93/Dinner_Generator_React/issues/32) UX/UI Improvements
 <!-- ISSUES-END -->
