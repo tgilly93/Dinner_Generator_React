@@ -32,28 +32,24 @@ function NavBar() {
     >
       <Container fluid="xl">
         <Navbar.Brand as={NavLink} to="/">
-          Container XL
+          Home
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarsExample07XL" />
         <Navbar.Collapse id="navbarsExample07XL">
           <Nav className="me-auto mb-2 mb-lg-0">
-            <Nav.Link as={NavLink} to="/categories">
-              Categories
-            </Nav.Link>
-            <Nav.Link as={NavLink} to="/search-by-letter">
-              Browse by Letter
-            </Nav.Link>
-            <Nav.Link href="#" disabled>
-              Disabled
-            </Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+            <NavDropdown title="Browse Options" id="basic-nav-dropdown">
               <NavDropdown.Item as={NavLink} to="/areas">
                 Areas
+              </NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="/categories">
+                Categories
               </NavDropdown.Item>
               <NavDropdown.Item as={NavLink} to="/ingredients">
                 Ingredients
               </NavDropdown.Item>
-              <NavDropdown.Item href="#">Something else here</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to="/search-by-letter">
+                Search by Letter
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Form className="d-flex" role="search " onSubmit={handleSearchSubmit}>
