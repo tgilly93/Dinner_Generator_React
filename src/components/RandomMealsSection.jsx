@@ -4,7 +4,7 @@ import { Spinner, Alert, Row } from "react-bootstrap";
 
 const RandomMealsSection = forwardRef(({ mealPlan, loading, error }, ref) => {
     return (
-        <div ref={ref} className="my-5">
+        <div ref={ref} className="min-vh-100 py-5">
             {loading && (
                 <div className="text-center py-5">
                     <Spinner animation="border" role="status" variant="primary" />

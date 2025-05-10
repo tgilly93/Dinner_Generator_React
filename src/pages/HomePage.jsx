@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import mealService from "../assets/services/mealService";
 import RandomMealsSection from "../components/RandomMealsSection";
+import MealResult from "./MealResult";
 
 function HomePage() {
   const mealPlanRef = useRef();
+  const mealResultRef = useRef();
   const [mealPlan, setMealPlan] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -27,33 +29,45 @@ function HomePage() {
     }
   };
 
+  const handleScrollToMealResult = () => {
+    mealResultRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+
   return (
     <Container
       fluid
-      className="vh-100 d-flex flex-column justify-content-center align-items-center bg-light"
+      className="bg-light"
     >
-      <Row>
+      <Row className="vh-100 d-flex flex-column justify-content-center align-items-center">
         <Col className="text-center">
           <h1 className="display-4">Welcome to the HomePage!</h1>
           <p className="lead">This is a homepage</p>
 
-          <div>
-            <div className="text-center my-4">
-              <button
-                className="btn btn-primary"
-                onClick={handleGenerateMealPlan}
-              >
-                Get Meal Plan
-              </button>
+            <div className="d-flex text-center justify-content-center gap-3 my-4">
+              <Button onClick={handleGenerateMealPlan} variant="primary">
+                Get Daily Meal Plan
+              </Button>
+              <Button onClick={handleScrollToMealResult} variant="secondary">
+                Get Random Meal
+              </Button>
             </div>
+        </Col>
+      </Row>
 
-            <RandomMealsSection
+      <Row>
+        <Col>
+          <RandomMealsSection
               ref={mealPlanRef}
               mealPlan={mealPlan}
               loading={loading}
               error={error}
             />
-          </div>
+        </Col>
+      </Row>
+
+      <Row ref={mealResultRef}>
+        <Col>
+          <MealResult />
         </Col>
       </Row>
     </Container>
