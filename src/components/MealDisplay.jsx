@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, ListGroup, Ratio } from "react-bootstrap";
+import { Row, Col, Image, ListGroup, Ratio, Container } from "react-bootstrap";
 
 function MealDisplay({ meal }) {
   if (!meal) return null;
@@ -16,45 +16,59 @@ function MealDisplay({ meal }) {
   const videoId = meal.strYoutube?.split("v=")[1];
 
   return (
-    <Card className="mb-4 shadow-sm">
-      <Card.Img variant="top" src={meal.strMealThumb} />
-      <Card.Body>
-        <Card.Title>{meal.strMeal}</Card.Title>
-        <Card.Text>
-          <strong>Category:</strong> {meal.strCategory} <br />
-          <strong>Area:</strong> {meal.strArea} <br />
-        </Card.Text>
+    <Container className="p-3 bg-white rounded shadow-sm">
+      <Row className="mb-4">
+        <Col md={5}>
+          <Image
+            src={meal.strMealThumb}
+            alt={meal.strMeal}
+            fluid
+            rounded
+            className="mb-3"
+          />
+        </Col>
+        <Col md={7}>
+          <h2>{meal.strMeal}</h2>
+          <p>
+            <strong>Category:</strong> {meal.strCategory} <br />
+            <strong>Area:</strong> {meal.strArea}
+          </p>
 
-        <h5>Instructions</h5>
-        <Card.Text style={{ whiteSpace: "pre-line" }}>
-          {meal.strInstructions}
-        </Card.Text>
+          {ingredients.length > 0 && (
+            <>
+              <h5>Ingredients</h5>
+              <ListGroup className="mb-3">
+                {ingredients.map((ingredient, index) => (
+                  <ListGroup.Item key={index}>{ingredient}</ListGroup.Item>
+                ))}
+              </ListGroup>
+            </>
+            )}
+            </Col>
+        </Row>
 
-        {ingredients.length > 0 && (
-          <>
-            <h5>Ingredients</h5>
-            <ListGroup className="mb-3">
-              {ingredients.map((ingredient, index) => (
-                <ListGroup.Item key={index}>{ingredient}</ListGroup.Item>
-              ))}
-            </ListGroup>
-          </>
-        )}
+        <Row className="mb-4">
+          <Col>
+            <h5>Instructions</h5>
+            <p style={{whiteSpace: "pre-line" }}>{meal.strInstructions}</p>
+          </Col>
+        </Row>
 
         {videoId && (
-          <>
-            <h5>Video Tutorial</h5>
-            <Ratio aspectRatio="16x9">
-              <iframe
-                title="YouTube video"
-                src={`https://www.youtube.com/embed/${videoId}`}
-                allowFullScreen
-              />
-            </Ratio>
-          </>
+          <Row>
+            <Col>
+              <h5>Video Tutorial</h5>
+              <Ratio aspectRatio="16x9">
+                <iframe
+                  title="YouTube video"
+                  src={`https://www.youtube.com/embed/${videoId}`}
+                  allowFullScreen
+                />
+              </Ratio>
+            </Col>
+          </Row>
         )}
-      </Card.Body>
-    </Card>
+        </Container>
   );
 }
 
