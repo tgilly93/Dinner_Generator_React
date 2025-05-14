@@ -3,6 +3,9 @@ import { Container, Row, Col, Button, Spinner, Alert } from "react-bootstrap";
 import mealService from "../assets/services/mealService";
 import RandomMealsSection from "../components/RandomMealsSection";
 import MealDisplay from "../components/MealDisplay";
+import RotatingDisappearText from "../components/RotatingDisappearText";
+import "../styles/TextAnimation.css";
+import FoodSpinner from "../components/FoodSpinner";
 
 function HomePage() {
   const mealPlanRef = useRef();
@@ -13,6 +16,14 @@ function HomePage() {
   const [randomError, setRandomError] = useState(null);
   const [loadingPlan, setLoadingPlan] = useState(false);
   const [planError, setPlanError] = useState("");
+
+  const scrollToRefWithOffset = (ref, offset = -80) => {
+    if (ref.current) {
+      const y =
+        ref.current.getBoundingClientRect().top + window.pageYOffset + offset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
 
   const handleGenerateMealPlan = async () => {
     try {
@@ -29,14 +40,6 @@ function HomePage() {
     }
   };
 
-  useEffect(() => {
-  if (mealPlan.length > 0 && mealPlanRef.current) {
-    const yOffset = -80; 
-    const y = mealPlanRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    window.scrollTo({ top: y, behavior: "smooth" });
-  }
-}, [mealPlan]);
-
   const handleGetRandomMeal = async () => {
     try {
       setLoadingRandom(true);
@@ -46,9 +49,6 @@ function HomePage() {
       const randomresult = await mealService.getRandomMeal();
       if (randomresult) {
         setRandomMeal(randomresult);
-        setTimeout(() => {
-          mealResultRef.current.scrollIntoView({ behavior: "smooth" });
-        }, 0);
       } else {
         setRandomError("No meal found.");
       }
@@ -60,12 +60,34 @@ function HomePage() {
     }
   };
 
+  useEffect(() => {
+    if (mealPlan.length > 0 && mealPlanRef.current) {
+      scrollToRefWithOffset(mealPlanRef);
+    }
+  }, [mealPlan]);
+
+  useEffect(() => {
+    if (randomMeal) {
+      scrollToRefWithOffset(mealResultRef);
+    }
+  }, [randomMeal]);
+
   return (
     <Container fluid className="bg-light">
-      <Row className="d-flex flex-column justify-content-center align-items-center">
-        <Col className="text-center">
-          <h1 className="display-4">Welcome to the HomePage!</h1>
-          <p className="lead">This is a homepage</p>
+      <Row className="d-flex flex-column justify-content-center align-items-center min-vh-100">
+        <Col xs={10} md={8} lg={6}>
+          <div className="mb-4">
+            <FoodSpinner />
+          </div>
+          <div className="rotating-text-container">
+            <RotatingDisappearText
+              textArray={[
+                "Welcome to Meal Planner",
+                "Your Daily Meal Planner",
+                "Healthy Eating Made Easy",
+              ]}
+            />
+          </div>
 
           <div className="d-flex text-center justify-content-center gap-3 my-4">
             <Button onClick={handleGetRandomMeal} variant="primary">
@@ -80,15 +102,29 @@ function HomePage() {
 
       <Row ref={mealResultRef}>
         <Col>
-          {loadingRandom && <Spinner animation="border" variant="primary" />}
+          {loadingRandom && (
+            <div className="text-center py-5">
+              <Spinner animation="border" role="status" variant="primary" />
+            </div>
+          )}
           {randomError && <Alert variant="danger">{randomError}</Alert>}
-          {randomMeal && <MealDisplay meal={randomMeal} />}
+          {randomMeal && (
+            <>
+              <h2 className="text-center display-5 fw-bold my-4 text-primary">
+                Enjoy your random meal!
+              </h2>
+              <MealDisplay meal={randomMeal} />
+            </>
+          )}
         </Col>
       </Row>
 
       {mealPlan.length > 0 && (
         <Row ref={mealPlanRef}>
           <Col>
+            <h2 className="text-center display-5 fw-bold my-4 text-primary">
+              Your Daily Meal Plan!
+            </h2>
             <RandomMealsSection
               mealPlan={mealPlan}
               loading={loadingPlan}
