@@ -1,10 +1,10 @@
 import React, { forwardRef } from "react";
 import MealCard from "./MealCard";
-import { Spinner, Alert, Row } from "react-bootstrap";
+import { Spinner, Alert, Row, Container } from "react-bootstrap";
 
 const RandomMealsSection = forwardRef(({ mealPlan, loading, error }, ref) => {
     return (
-        <div ref={ref} className="d-flex flex-column justify-content-center align-items-center min-vh-100 py-5 bg-white">
+        <Container ref={ref} className="d-flex flex-column justify-content-center align-items-center min-vh-100 py-5 bg-white rounded shadow-sm">
             {loading && (
                 <div className="text-center py-5">
                     <Spinner animation="border" role="status" variant="primary" />
@@ -24,7 +24,7 @@ const RandomMealsSection = forwardRef(({ mealPlan, loading, error }, ref) => {
                     </div>
                 ))}
             </Row>
-        </div>
+        </Container>
     );
 });
 

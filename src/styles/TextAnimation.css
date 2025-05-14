@@ -1,0 +1,49 @@
+.dummy-wheel {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 10px solid #007bff;
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+.rotating-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5.5rem;
+  overflow: hidden;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .rotating-text-container {
+    height: 6rem;
+    }
+
+    .dummy-wheel {
+      width: 120px;
+      height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+  .rotating-text-container {
+    height: 7rem;
+    }
+
+    .dummy-wheel {
+      width: 100px;
+      height: 100px;
+    }
+}
