@@ -10,6 +10,7 @@ import FoodSpinner from "../components/FoodSpinner";
 function HomePage() {
   const mealPlanRef = useRef();
   const mealResultRef = useRef();
+  const browseDropdownRef = useRef();
   const [mealPlan, setMealPlan] = useState([]);
   const [randomMeal, setRandomMeal] = useState(null);
   const [loadingRandom, setLoadingRandom] = useState(false);
@@ -82,19 +83,19 @@ function HomePage() {
           <div className="rotating-text-container">
             <RotatingDisappearText
               textArray={[
-                "Welcome to Meal Planner",
-                "Your Daily Meal Planner",
-                "Healthy Eating Made Easy",
+                "Welcome to Meal Generator!",
+                "Decision fatigue? Let Us Decide!",
+                "Eating Made Easy!",
               ]}
             />
           </div>
 
           <div className="d-flex text-center justify-content-center gap-3 my-4">
             <Button onClick={handleGetRandomMeal} variant="primary">
-              Get Random Meal
+              Generate Meal
             </Button>
             <Button onClick={handleGenerateMealPlan} variant="primary">
-              Get Daily Meal Plan
+              Generate Meal Plan
             </Button>
           </div>
         </Col>
@@ -114,6 +115,13 @@ function HomePage() {
                 Enjoy your random meal!
               </h2>
               <MealDisplay meal={randomMeal} />
+
+              <div className="text-center my-5">
+                <h4 className="mb-4 text-secondary fw-semibold">Not Satisfied?</h4>
+                <div className="d-flex justify-content-center gap-4">
+                  <Button variant="outline-primary" onClick={handleGetRandomMeal}>Pick Again!</Button>
+                </div>
+              </div>
             </>
           )}
         </Col>
@@ -130,6 +138,12 @@ function HomePage() {
               loading={loadingPlan}
               error={planError}
             />
+             <div className="text-center my-5">
+                <h4 className="mb-4 text-secondary fw-semibold">Not Satisfied?</h4>
+                <div className="d-flex justify-content-center gap-4">
+                  <Button variant="outline-primary" onClick={handleGenerateMealPlan}>Pick Again!</Button>
+                </div>
+              </div>
           </Col>
         </Row>
       )}
