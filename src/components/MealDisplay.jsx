@@ -43,32 +43,32 @@ function MealDisplay({ meal }) {
                 ))}
               </ListGroup>
             </>
-            )}
-            </Col>
-        </Row>
+          )}
+        </Col>
+      </Row>
 
-        <Row className="mb-4">
+      <Row className="mb-4">
+        <Col>
+          <h5>Instructions</h5>
+          <p style={{ whiteSpace: "pre-line" }}>{meal.strInstructions}</p>
+        </Col>
+      </Row>
+
+      {videoId && (
+        <Row>
           <Col>
-            <h5>Instructions</h5>
-            <p style={{whiteSpace: "pre-line" }}>{meal.strInstructions}</p>
+            <h5>Video Tutorial</h5>
+            <Ratio aspectRatio="16x9">
+              <iframe
+                title="YouTube video"
+                src={`https://www.youtube.com/embed/${videoId}`}
+                allowFullScreen
+              />
+            </Ratio>
           </Col>
         </Row>
-
-        {videoId && (
-          <Row>
-            <Col>
-              <h5>Video Tutorial</h5>
-              <Ratio aspectRatio="16x9">
-                <iframe
-                  title="YouTube video"
-                  src={`https://www.youtube.com/embed/${videoId}`}
-                  allowFullScreen
-                />
-              </Ratio>
-            </Col>
-          </Row>
-        )}
-        </Container>
+      )}
+    </Container>
   );
 }
 

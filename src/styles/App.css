@@ -1,0 +1,14 @@
+body,
+html,
+#root {
+  background: linear-gradient(to right, #ffc3e0, #ffcc80, #fb8c00);
+  color: #333;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.full-background {
+  background: none !important;
+  background-color: transparent !important;
+}

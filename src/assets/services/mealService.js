@@ -110,8 +110,10 @@ const mealService = {
         this.getMealsByCategory("Dessert"),
       ]);
 
-      const randomBreakfast = breakfastMeals[Math.floor(Math.random() * breakfastMeals.length)];
-      const randomDessert = dessertMeals[Math.floor(Math.random() * dessertMeals.length)];
+      const randomBreakfast =
+        breakfastMeals[Math.floor(Math.random() * breakfastMeals.length)];
+      const randomDessert =
+        dessertMeals[Math.floor(Math.random() * dessertMeals.length)];
 
       selectedMeals.set(randomBreakfast.idMeal, randomBreakfast);
       selectedMeals.set(randomDessert.idMeal, randomDessert);
@@ -120,7 +122,7 @@ const mealService = {
         this.getRandomMeal(),
         this.getRandomMeal(),
         this.getRandomMeal(),
-        this.getRandomMeal()
+        this.getRandomMeal(),
       ]);
 
       for (const meal of randomMeals) {
@@ -141,7 +143,9 @@ const mealService = {
       }
 
       if (selectedMeals.size < 4) {
-        throw new Error("Unable to collect 4 unique meals after multiple attempts.");
+        throw new Error(
+          "Unable to collect 4 unique meals after multiple attempts."
+        );
       }
 
       return Array.from(selectedMeals.values());
@@ -149,7 +153,7 @@ const mealService = {
       console.error("Error fetching random meal plan:", error);
       throw error;
     }
-  }
+  },
 };
 
 export default mealService;
