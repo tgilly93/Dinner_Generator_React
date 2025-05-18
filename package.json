@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://tgilly93.github.io/Dinner_Generator_React/?v=2",
+  "homepage": "https://tgilly93.github.io/Dinner_Generator_React/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
