@@ -21,7 +21,7 @@ function MealResult() {
           setMeal(result);
         } else {
           setError("No meal found.");
-        } 
+        }
       } catch (err) {
         console.error("Error fetching meal:", err);
         setError("An error occurred while fetching the meal.");
@@ -32,14 +32,18 @@ function MealResult() {
     fetchMeal();
   }, [mealId]);
 
-  if (loading) return <Spinner animation="border" variant="primary" />;
+  if (loading)
+    return (
+      <div className="text-center py-5">
+        <Spinner animation="border" role="status" variant="primary" />
+      </div>
+    );
   if (error) return <Alert variant="danger">{error}</Alert>;
 
-
   return (
-    <Container className="mt-4">
+    <Container className="mt-4 mb-4">
       <MealDisplay meal={meal} />
-  </Container>
+    </Container>
   );
 }
 

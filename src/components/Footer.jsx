@@ -10,13 +10,14 @@ function Footer() {
       <Container>
         <Row className="text-center">
           <Col>
-            <p className="mb-0 text-body-secondary py-2">© 2025 Terry Gilmore Jr. | All Rights Reserved.</p>
+            <p className="mb-0 text-body-secondary py-2">
+              © 2025 Terry Gilmore Jr. | All Rights Reserved.
+            </p>
           </Col>
         </Row>
       </Container>
     </footer>
   );
 }
-
 
 export default Footer;

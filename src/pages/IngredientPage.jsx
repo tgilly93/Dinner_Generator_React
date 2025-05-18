@@ -28,7 +28,7 @@ function IngredientPage() {
   }, []);
 
   return (
-    <Container className="py-5 bg-light">
+    <Container className="py-5 full-background">
       <Row>
         <Col className="text-center">
           <h1 className="display-4">Explore meals by Ingredient</h1>

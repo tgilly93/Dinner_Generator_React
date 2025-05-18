@@ -28,7 +28,10 @@ function App() {
         <Route path="/areas" element={<AreaPage />} />
         <Route path="/area/:areaName" element={<MealsByArea />} />
         <Route path="/ingredients" element={<IngredientPage />} />
-        <Route path="/ingredient/:ingredientName" element={<MealsByIngredient />} />
+        <Route
+          path="/ingredient/:ingredientName"
+          element={<MealsByIngredient />}
+        />
       </Routes>
       <Footer />
     </div>

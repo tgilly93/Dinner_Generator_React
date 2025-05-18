@@ -74,7 +74,7 @@ function HomePage() {
   }, [randomMeal]);
 
   return (
-    <Container fluid className="bg-light">
+    <Container fluid className="full-background">
       <Row className="d-flex flex-column justify-content-center align-items-center min-vh-100">
         <Col xs={10} md={8} lg={6}>
           <div className="mb-4">
@@ -117,9 +117,16 @@ function HomePage() {
               <MealDisplay meal={randomMeal} />
 
               <div className="text-center my-5">
-                <h4 className="mb-4 text-secondary fw-semibold">Not Satisfied?</h4>
+                <h4 className="mb-4 text-secondary fw-semibold">
+                  Not Satisfied?
+                </h4>
                 <div className="d-flex justify-content-center gap-4">
-                  <Button variant="outline-primary" onClick={handleGetRandomMeal}>Pick Again!</Button>
+                  <Button
+                    variant="outline-primary"
+                    onClick={handleGetRandomMeal}
+                  >
+                    Pick Again!
+                  </Button>
                 </div>
               </div>
             </>
@@ -138,12 +145,19 @@ function HomePage() {
               loading={loadingPlan}
               error={planError}
             />
-             <div className="text-center my-5">
-                <h4 className="mb-4 text-secondary fw-semibold">Not Satisfied?</h4>
-                <div className="d-flex justify-content-center gap-4">
-                  <Button variant="outline-primary" onClick={handleGenerateMealPlan}>Pick Again!</Button>
-                </div>
+            <div className="text-center my-5">
+              <h4 className="mb-4 text-secondary fw-semibold">
+                Not Satisfied?
+              </h4>
+              <div className="d-flex justify-content-center gap-4">
+                <Button
+                  variant="outline-primary"
+                  onClick={handleGenerateMealPlan}
+                >
+                  Pick Again!
+                </Button>
               </div>
+            </div>
           </Col>
         </Row>
       )}

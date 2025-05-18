@@ -41,7 +41,7 @@ function MealsByCategory() {
   }
 
   return (
-    <Container className="py-5 bg-light">
+    <Container className="py-5 full-background">
       <h2 className="text-center mb-4">{categoryName} Meals</h2>
       <Row xs={1} sm={2} md={3} lg={4} className="g-4">
         {meals.map((meal) => (
